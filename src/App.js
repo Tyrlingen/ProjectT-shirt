@@ -5,24 +5,41 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentText: []
+      text: " "
     };
   }
-  wordGetter(){
-    fetch("https://random-word-api.herokuapp.com/word?number=10")
+  handleKeyPress(event){
+    if (event.which === 13) {
+      const inputField = document.querySelector("#word-count");
+      const number = inputField.value;
+      this.wordGetter(number);
+  }
+  }
+  handleClick(){
+    const inputField = document.querySelector("#word-count");
+    const number = inputField.value;
+    this.wordGetter(number);
+  }
+  wordGetter(number){
+
+    fetch(`https://random-word-api.herokuapp.com/word?number=${number}`)
     .then((response)=>{
       return response.json();
     })
     .then((data)=>{
-      this.setState({currentText: data});
+      const text = data.join(" ")
+      this.setState({text: text});
     })
-    
-  }
-  render(){
-    console.log(this.state.currentText); 
+    }
+
+  render(){ 
     return(<main>
-        <p>"blabla"</p>
-        <button onClick={this.wordGetter.bind(this)}>Klick me!</button>
+          <label for="word-count">Word count:</label>
+          <input id="word-count" type="number"  onKeyPress = {this.handleKeyPress.bind(this)}></input>
+        <button onClick={this.handleClick.bind(this)}>Klick me!</button>
+        <div className="tshirt-container">
+          <p>{this.state.text}</p>
+        </div>
     </main>)
   }
 }
