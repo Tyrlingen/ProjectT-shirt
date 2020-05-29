@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import "./App.css";
+import "./App.scss";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       text: " ",
+      savedShirts: [],
     };
   }
 
@@ -13,28 +14,6 @@ class App extends Component {
     event.preventDefault();
     const inputField = document.querySelector("#word-count");
     const number = inputField.value;
-    fetch(`https://random-word-api.herokuapp.com/word?number=${number}`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        const text = data.join(" ");
-        this.setState({ text: text });
-      });
-  }
-  handleKeyPress(event) {
-    if (event.which === 13) {
-      const inputField = document.querySelector("#word-count");
-      const number = inputField.value;
-      this.wordGetter(number);
-    }
-  }
-  handleClick() {
-    const inputField = document.querySelector("#word-count");
-    const number = inputField.value;
-    this.wordGetter(number);
-  }
-  wordGetter(number) {
     fetch(`https://random-word-api.herokuapp.com/word?number=${number}`)
       .then((response) => {
         return response.json();
@@ -53,8 +32,10 @@ class App extends Component {
           <input id="word-count" type="number" />
           <input type="submit" />
         </form>
-        <div className="tshirt-container">
-          <p>{this.state.text}</p>
+        <div className="tshirt-container text--center">
+          <div className="tshirt">
+            <p>{this.state.text}</p>
+          </div>
         </div>
       </main>
     );
