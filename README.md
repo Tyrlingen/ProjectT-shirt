@@ -1,4 +1,16 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Project Description
+
+## Why React?
+
+## Installing
+
+To be able to run this program, you need the following dependencies:
+
+1. npm
+2. node-sass
+
+These will be included when running the following in the terminal:
+npm install
 
 ## Available Scripts
 
