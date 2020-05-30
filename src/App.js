@@ -47,6 +47,12 @@ class App extends Component {
       });
   }
 
+  changeTextAlign(event){
+    console.log (event.target.value)
+    this.setState({textAlign:event.target.value})
+
+  }
+
   renderColorButton(thing, color) {
     return (
       <button
@@ -59,7 +65,8 @@ class App extends Component {
   render() {
     const shirtClasses = this.getClasses();
     return (
-      <main>
+      <article className="main-container">
+        <div className="form-container">
         <form id="generate-words" onSubmit={this.handleSubmit.bind(this)}>
           <label for="word-count">Word count:</label>
           <input id="word-count" type="number" />
@@ -72,16 +79,31 @@ class App extends Component {
           })}
         </div>
         <div className="text-color-options">
+          <span>Text color:</span>
           {this.colorList.map((color) => {
             return this.renderColorButton("text", color);
           })}
         </div>
+        <select onChange={this.changeTextAlign.bind(this)}>
+          <option value="right">
+            Right
+          </option>
+          <option value="center">
+            Center
+          </option>
+          <option value="left">
+            Left
+          </option>
+        </select>
+
+        </div>
+        
         <div className={`tshirt-container shirt-color--white ${shirtClasses}`}>
           <div className="tshirt">
             <p>{this.state.text}</p>
           </div>
         </div>
-      </main>
+      </article>
     );
   }
 }
