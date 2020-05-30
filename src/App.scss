@@ -11,6 +11,11 @@
 }
 
 @mixin text-color($color) {
+  .tshirt {
+    p {
+      color: $color;
+    }
+  }
 }
 
 @mixin font-style($font) {
@@ -130,28 +135,22 @@
   }
   &-color {
     &--white {
-      .tshirt {
-      }
+      @include text-color(white);
     }
     &--black {
-      .tshirt {
-      }
+      @include text-color(black);
     }
     &--green {
-      .tshirt {
-      }
+      @include text-color(green);
     }
     &--blue {
-      .tshirt {
-      }
+      @include text-color(blue);
     }
     &--red {
-      .tshirt {
-      }
+      @include text-color(red);
     }
     &--yellow {
-      .tshirt {
-      }
+      @include text-color(yellow);
     }
   }
   &-font {

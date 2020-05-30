@@ -12,21 +12,26 @@ class App extends Component {
       textColor: "",
       shirtFont: "",
     };
+
+    this.colorList = ["white", "black", "green", "blue", "red", "yellow"];
   }
 
-  changeShirtColor(color) {
-    this.setState({ shirtColor: color });
+  changeColorOf(thing, color) {
+    thing == "shirt"
+      ? this.setState({ shirtColor: color })
+      : this.setState({ textColor: color });
   }
 
   getClasses() {
-    var text = "text-align--";
+    var textAlign = "text-align--";
+    var textColor = "text-color--";
     var shirt = "shirt-color--";
 
-    var textAlign = text + this.state.textAlign;
+    var newTextAlign = textAlign + this.state.textAlign;
     var shirtColor = shirt + this.state.shirtColor;
-    var textColor = text;
+    var newTextColor = textColor + this.state.textColor;
 
-    return [textAlign, shirtColor].join(" ");
+    return [newTextAlign, shirtColor, newTextColor].join(" ");
   }
   handleSubmit(event) {
     event.preventDefault();
@@ -42,6 +47,15 @@ class App extends Component {
       });
   }
 
+  renderColorButton(thing, color) {
+    return (
+      <button
+        className={`color-btn color-btn--${color}`}
+        onClick={() => this.changeColorOf(thing, color)}
+      ></button>
+    );
+  }
+
   render() {
     const shirtClasses = this.getClasses();
     return (
@@ -51,31 +65,16 @@ class App extends Component {
           <input id="word-count" type="number" />
           <input type="submit" />
         </form>
-        <div className="shirt-color-options">
-          <button
-            className="color-btn color-btn--white"
-            onClick={() => this.changeShirtColor("white")}
-          ></button>
-          <button
-            className="color-btn color-btn--black "
-            onClick={() => this.changeShirtColor("black")}
-          ></button>
-          <button
-            className="color-btn color-btn--green"
-            onClick={() => this.changeShirtColor("green")}
-          ></button>
-          <button
-            className="color-btn color-btn--blue"
-            onClick={() => this.changeShirtColor("blue")}
-          ></button>
-          <button
-            className="color-btn color-btn--red"
-            onClick={() => this.changeShirtColor("red")}
-          ></button>
-          <button
-            className="color-btn color-btn--yellow"
-            onClick={() => this.changeShirtColor("yellow")}
-          ></button>
+        <div className="color-options">
+          <span>Shirt color:</span>
+          {this.colorList.map((color) => {
+            return this.renderColorButton("shirt", color);
+          })}
+        </div>
+        <div className="text-color-options">
+          {this.colorList.map((color) => {
+            return this.renderColorButton("text", color);
+          })}
         </div>
         <div className={`tshirt-container shirt-color--white ${shirtClasses}`}>
           <div className="tshirt">
