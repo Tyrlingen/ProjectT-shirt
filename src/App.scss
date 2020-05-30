@@ -1,3 +1,46 @@
+@mixin shirt-color($color) {
+  .tshirt {
+    background-color: $color;
+    &::before,
+    &::after,
+    p::before,
+    p::after {
+      background-color: $color;
+    }
+  }
+}
+
+@mixin text-color($color) {
+}
+
+@mixin font-style($font) {
+}
+
+.color-btn {
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+
+  &--white {
+    background-color: white;
+  }
+  &--black {
+    background-color: black;
+  }
+  &--green {
+    background-color: green;
+  }
+  &--blue {
+    background-color: blue;
+  }
+  &--red {
+    background-color: red;
+  }
+  &--yellow {
+    background-color: yellow;
+  }
+}
+
 .tshirt-container {
   width: 100%;
   height: 100%;
@@ -50,13 +93,68 @@
   }
 }
 
+.shirt {
+  &-color {
+    &--white {
+      @include shirt-color(white);
+    }
+    &--black {
+      @include shirt-color(black);
+    }
+    &--green {
+      @include shirt-color(green);
+    }
+    &--blue {
+      @include shirt-color(blue);
+    }
+    &--red {
+      @include shirt-color(red);
+    }
+    &--yellow {
+      @include shirt-color(yellow);
+    }
+  }
+}
+
 .text {
-  &--center {
-    text-align: center;
+  &-align {
+    &--center {
+      text-align: center;
+    }
+    &--left {
+      text-align: left;
+    }
+    &--right {
+      text-align: right;
+    }
   }
-  &--left {
+  &-color {
+    &--white {
+      .tshirt {
+      }
+    }
+    &--black {
+      .tshirt {
+      }
+    }
+    &--green {
+      .tshirt {
+      }
+    }
+    &--blue {
+      .tshirt {
+      }
+    }
+    &--red {
+      .tshirt {
+      }
+    }
+    &--yellow {
+      .tshirt {
+      }
+    }
   }
-  &--right {
+  &-font {
   }
 }
 
