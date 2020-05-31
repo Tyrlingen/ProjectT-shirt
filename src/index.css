@@ -4,8 +4,7 @@
 
 body {
   margin: 0;
-  min-height: 100vh;
-  font-family: 'Muli', sans-serif;
+  font-family: "Muli", sans-serif;
 }
 
 header {
@@ -20,8 +19,8 @@ header {
   display: flex;
   background-color: rgb(13, 14, 13);
   color: white;
+  height: 10%;
   box-shadow: 2px 2px 2px black;
-  display: flex;
   flex-wrap: wrap;
   margin-bottom: 3px;
 }
@@ -35,20 +34,19 @@ header {
 }
 
 .navbar a:hover {
-  background-color:rgb(236, 171, 171);
+  background-color: rgb(236, 171, 171);
   color: #000;
   text-decoration: underline;
 }
 
-.Holder {
+/*.Holder {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   flex-grow: 1;
   justify-content: center;
   align-items: center;
-  height: 80%;
-}
+  */
 
 .main-container {
   display: flex;
@@ -60,8 +58,11 @@ header {
   display: flex;
   height: 80%;
   width: 100%;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  /*align-items: center;*/
+  flex-wrap: wrap;
+  flex-direction: row;
+  flex-grow: 1;
 }
 
 footer {
@@ -96,7 +97,7 @@ footer {
   padding: 10px 20px;
   border-radius: 100px;
   display: inline-block;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .btn-white {
@@ -115,7 +116,7 @@ footer {
 }
 
 .btn-bottom-animation-1 {
-  animation: comeFromBottom 0.5s ease-out .4s;
+  animation: comeFromBottom 0.5s ease-out 0.4s;
 }
 
 .btn::after {
@@ -130,7 +131,7 @@ footer {
   border-radius: 100px;
   display: inline-block;
   z-index: -1;
-  transition: all .5s;
+  transition: all 0.5s;
 }
 
 .btn-white::after {
@@ -144,56 +145,54 @@ footer {
 
 @keyframes comeFromBottom {
   0% {
-      opacity: 0;
-      transform: translateY(40px);
+    opacity: 0;
+    transform: translateY(40px);
   }
   100% {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 @media screen and (max-width: 980px) {
   .shirtHolder {
-      height: 400px;
-      width: 400px;
+    height: 400px;
+    width: 400px;
   }
 
   #select {
-      width: 60%;
+    width: 60%;
   }
 
   .memeWindow {
-      width: 40%;
-      height: 40%;
+    width: 40%;
+    height: 40%;
+  }
 
-}
-
-@media screen and (max-width: 600px) {
-  .navbar a {
+  @media screen and (max-width: 600px) {
+    .navbar a {
       flex-basis: 100%;
       border-style: solid;
       border-width: 2px;
-  }
+    }
 
-  .shirtHolder {
+    .shirtHolder {
       height: 250px;
       width: 250px;
-  }
+    }
 
-  .memeWindow {
+    .memeWindow {
       width: 40%;
       height: 40%;
-  }
-  .name {
+    }
+    .name {
       flex-basis: 100%;
       margin: auto;
-  }
+    }
 
-  #select {
+    #select {
       width: 100%;
       padding: 10px 80px;
+    }
   }
 }
-}
-
