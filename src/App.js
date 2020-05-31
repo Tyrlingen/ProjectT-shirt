@@ -7,7 +7,7 @@ class App extends Component {
     this.state = {
       savedShirts: [],
       text: " ",
-      textAlign: "right",
+      textAlign: "left",
       shirtColor: "",
       textColor: "",
       shirtFont: "",
