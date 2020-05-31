@@ -58,6 +58,7 @@ $yellow: rgb(255, 196, 0);
   }
   width: 100%;
   max-width: 800px;
+  display: flex;
   position: relative;
   background-color: #555;
 
@@ -102,7 +103,6 @@ $yellow: rgb(255, 196, 0);
     display: block;
     width: 100%;
     z-index: 100;
-    font-size: 2.5vw;
   }
 }
 
