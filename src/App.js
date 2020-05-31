@@ -101,6 +101,21 @@ class App extends Component {
             <input id="word-count" type="number" />
             <input type="submit" />
           </form>
+          <div className="align-text-options">
+            <span>Align Text:</span>
+            <select className="pretty-buttons" onChange={this.changeTextAlign.bind(this)}>
+              <option value="right">Right</option>
+              <option value="center">Center</option>
+              <option value="left">Left</option>
+            </select>
+          </div>
+          <div className="change-font-options">
+            <span>Change font:</span>
+            <select className="pretty-buttons">
+              <option value="right">Comic sans</option>
+              <option value="center">BleepBloop</option>
+            </select>
+          </div>
           <div className="color-options">
             <span>Shirt color:</span>
             {this.colorList.map((color) => {
@@ -112,14 +127,6 @@ class App extends Component {
             {this.colorList.map((color) => {
               return this.renderColorButton("text", color);
             })}
-          </div>
-          <div className="align-text-options">
-            <span>Align Text:</span>
-            <select onChange={this.changeTextAlign.bind(this)}>
-              <option value="right">Right</option>
-              <option value="center">Center</option>
-              <option value="left">Left</option>
-            </select>
           </div>
         </div>
 
@@ -139,7 +146,7 @@ class App extends Component {
               shirt.textColor
             );
             return (
-              <div className={`tshirt-container card ${newClasses}`}>
+              <div className={`tshirt-container card shirt-color--white ${newClasses}`}>
                 <div className="tshirt">
                   <p>{shirt.text}</p>
                 </div>
