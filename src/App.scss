@@ -217,4 +217,6 @@ $yellow: rgb(255, 196, 0);
 
 .storage-container {
   width: 100%;
+  display: flex;
+  flex-direction: row;
 }

@@ -95,7 +95,8 @@ class App extends Component {
     );
     return (
       <>
-        <div className="form-container">
+      <div className="column"> <div className="form-container">
+          <h3>Create your t-shirt here!</h3>
           <form id="generate-words" onSubmit={this.handleSubmit.bind(this)}>
             <label for="word-count">Word count:</label>
             <input id="word-count" type="number" />
@@ -137,8 +138,9 @@ class App extends Component {
           <div className="tshirt">
             <p>{this.state.text}</p>
           </div>
-        </div>
-        <div className="storage-container">
+        </div></div>
+       
+                 <div className="storage-container">
           {this.state.savedShirts.map((shirt) => {
             let newClasses = this.getClasses(
               shirt.textAlign,
@@ -154,7 +156,7 @@ class App extends Component {
             );
           })}
         </div>
-      </>
+        </>
     );
   }
 }
