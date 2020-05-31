@@ -16,22 +16,48 @@ class App extends Component {
     this.colorList = ["white", "black", "green", "blue", "red", "yellow"];
   }
 
+  componentDidMount() {
+    this.getShirts();
+  }
+
+  getShirts() {
+    const myStorage = window.localStorage;
+    const shirts = myStorage.getItem("saved-shirts");
+    if (shirts && shirts.length) {
+      this.setState({ savedShirts: JSON.parse(shirts) });
+    }
+  }
+
+  saveShirt() {
+    const shirt = {
+      text: this.state.text,
+      textAlign: this.state.textAlign,
+      shirtColor: this.state.shirtColor,
+      textColor: this.state.textColor,
+      shirtFont: this.state.shirtFont,
+    };
+    const newSavedShirts = [...this.state.savedShirts, shirt];
+    this.setState({ savedShirts: newSavedShirts });
+    const myStorage = window.localStorage;
+    myStorage.setItem("saved-shirts", JSON.stringify(newSavedShirts));
+  }
+
   changeColorOf(thing, color) {
     thing == "shirt"
       ? this.setState({ shirtColor: color })
       : this.setState({ textColor: color });
   }
 
-  getClasses() {
-    var textAlign = "text-align--";
-    var textColor = "text-color--";
-    var shirt = "shirt-color--";
+  getClasses(textAlign, shirtColor, textColor) {
+    var startTextAlign = "text-align--";
+    var startTextColor = "text-color--";
+    var startShirt = "shirt-color--";
 
-    var newTextAlign = textAlign + this.state.textAlign;
-    var shirtColor = shirt + this.state.shirtColor;
-    var newTextColor = textColor + this.state.textColor;
+    var newTextAlign = startTextAlign + textAlign;
+    var newShirtColor = startShirt + shirtColor;
+    var newTextColor = startTextColor + textColor;
 
-    return [newTextAlign, shirtColor, newTextColor].join(" ");
+    return [newTextAlign, newShirtColor, newTextColor].join(" ");
   }
   handleSubmit(event) {
     event.preventDefault();
@@ -47,10 +73,9 @@ class App extends Component {
       });
   }
 
-  changeTextAlign(event){
-    console.log (event.target.value)
-    this.setState({textAlign:event.target.value})
-
+  changeTextAlign(event) {
+    console.log(event.target.value);
+    this.setState({ textAlign: event.target.value });
   }
 
   renderColorButton(thing, color) {
@@ -63,47 +88,66 @@ class App extends Component {
   }
 
   render() {
-    const shirtClasses = this.getClasses();
+    const shirtClasses = this.getClasses(
+      this.state.textAlign,
+      this.state.shirtColor,
+      this.state.textColor
+    );
     return (
-      <article className="main-container">
+      <>
         <div className="form-container">
-        <form id="generate-words" onSubmit={this.handleSubmit.bind(this)}>
-          <label for="word-count">Word count:</label>
-          <input id="word-count" type="number" />
-          <input type="submit" />
-        </form>
-        <div className="color-options">
-          <span>Shirt color:</span>
-          {this.colorList.map((color) => {
-            return this.renderColorButton("shirt", color);
-          })}
+          <form id="generate-words" onSubmit={this.handleSubmit.bind(this)}>
+            <label for="word-count">Word count:</label>
+            <input id="word-count" type="number" />
+            <input type="submit" />
+          </form>
+          <div className="color-options">
+            <span>Shirt color:</span>
+            {this.colorList.map((color) => {
+              return this.renderColorButton("shirt", color);
+            })}
+          </div>
+          <div className="text-color-options">
+            <span>Text color:</span>
+            {this.colorList.map((color) => {
+              return this.renderColorButton("text", color);
+            })}
+          </div>
+          <div className="align-text-options">
+            <span>Align Text:</span>
+            <select onChange={this.changeTextAlign.bind(this)}>
+              <option value="right">Right</option>
+              <option value="center">Center</option>
+              <option value="left">Left</option>
+            </select>
+          </div>
         </div>
-        <div className="text-color-options">
-          <span>Text color:</span>
-          {this.colorList.map((color) => {
-            return this.renderColorButton("text", color);
-          })}
-        </div>
-        <select onChange={this.changeTextAlign.bind(this)}>
-          <option value="right">
-            Right
-          </option>
-          <option value="center">
-            Center
-          </option>
-          <option value="left">
-            Left
-          </option>
-        </select>
 
-        </div>
-        
         <div className={`tshirt-container shirt-color--white ${shirtClasses}`}>
+          <button className="add-btn" onClick={this.saveShirt.bind(this)}>
+            +
+          </button>
           <div className="tshirt">
             <p>{this.state.text}</p>
           </div>
         </div>
-      </article>
+        <div className="storage-container">
+          {this.state.savedShirts.map((shirt) => {
+            let newClasses = this.getClasses(
+              shirt.textAlign,
+              shirt.shirtColor,
+              shirt.textColor
+            );
+            return (
+              <div className={`tshirt-container card ${newClasses}`}>
+                <div className="tshirt">
+                  <p>{shirt.text}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </>
     );
   }
 }

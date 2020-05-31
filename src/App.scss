@@ -1,3 +1,9 @@
+$black: #222;
+$red: rgb(220, 61, 61);
+$green: rgb(51, 179, 87);
+$blue: rgb(36, 130, 212);
+$yellow: rgb(255, 196, 0);
+
 @mixin shirt-color($color) {
   .tshirt {
     background-color: $color;
@@ -30,28 +36,30 @@
     background-color: white;
   }
   &--black {
-    background-color: black;
+    background-color: $black;
   }
   &--green {
-    background-color: green;
+    background-color: $green;
   }
   &--blue {
-    background-color: blue;
+    background-color: $blue;
   }
   &--red {
-    background-color: red;
+    background-color: $red;
   }
   &--yellow {
-    background-color: yellow;
+    background-color: $yellow;
   }
 }
 
 .tshirt-container {
+  &.card {
+    //STYLES FOR TINY SHERT
+  }
   width: 100%;
-  height: 100%;
   max-width: 800px;
   position: relative;
-  background-color: green;
+  background-color: #555;
 
   &::after {
     content: "";
@@ -62,8 +70,8 @@
   p {
     height: 100%;
     margin: 0;
-    box-sizing: border-box;
     padding: 10%;
+    box-sizing: border-box;
     z-index: 5;
     &::before {
       content: "";
@@ -104,19 +112,19 @@
       @include shirt-color(white);
     }
     &--black {
-      @include shirt-color(black);
+      @include shirt-color($black);
     }
     &--green {
-      @include shirt-color(green);
+      @include shirt-color($green);
     }
     &--blue {
-      @include shirt-color(blue);
+      @include shirt-color($blue);
     }
     &--red {
-      @include shirt-color(red);
+      @include shirt-color($red);
     }
     &--yellow {
-      @include shirt-color(yellow);
+      @include shirt-color($yellow);
     }
   }
 }
@@ -138,19 +146,19 @@
       @include text-color(white);
     }
     &--black {
-      @include text-color(black);
+      @include text-color($black);
     }
     &--green {
-      @include text-color(green);
+      @include text-color($green);
     }
     &--blue {
-      @include text-color(blue);
+      @include text-color($blue);
     }
     &--red {
-      @include text-color(red);
+      @include text-color($red);
     }
     &--yellow {
-      @include text-color(yellow);
+      @include text-color($yellow);
     }
   }
   &-font {
@@ -193,4 +201,22 @@
     transform: rotate(-35deg);
     z-index: 0;
   }
+}
+
+.add-btn {
+  display: block;
+  font-size: 150%;
+  text-align: center;
+  width: 10%;
+  height: 10%;
+  position: absolute;
+  bottom: 9%;
+  left: 50%;
+  padding: 2% 2%;
+  border-radius: 100%;
+  transform: translate(-50%);
+}
+
+.storage-container {
+  width: 100%;
 }
