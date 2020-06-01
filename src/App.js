@@ -29,8 +29,18 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <NavLink to="/">Generate!</NavLink>
-        <NavLink to="/saved">Saved Shirts</NavLink>
+        <header>
+          <h1 class="logo">Chinese T-Shirt Generator</h1>
+          <div class="name">
+            <p>Grupp 25</p>
+            <p>Karl Hamnebo, Felicia Lindbäck, Sebastian Tyrling</p>
+          </div>
+        </header>
+        <nav class="navbar">
+          <NavLink to="/">Generate!</NavLink>
+          <NavLink to="/saved">Saved Shirts</NavLink>
+        </nav>
+
         <Switch>
           <Route path="/saved">
             <Saved getClasses={this.getClasses} />

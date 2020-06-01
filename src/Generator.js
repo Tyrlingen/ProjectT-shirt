@@ -6,16 +6,18 @@ class Generator extends Component {
     super(props);
     this.state = {
       savedShirts: [],
-      text: " ",
-      textAlign: "left",
-      shirtColor: "",
-      textColor: "",
+      text: "Generate me!",
+      textAlign: "center",
+      shirtColor: "white",
+      textColor: "black",
       shirtFont: "",
     };
 
     this.colorList = ["white", "black", "green", "blue", "red", "yellow"];
   }
-
+  componentDidMount() {
+    this.getClasses();
+  }
   saveShirt() {
     const shirt = {
       text: this.state.text,
@@ -82,35 +84,36 @@ class Generator extends Component {
       this.state.textColor
     );
     return (
-      <>
+      <main className="main--generator">
         <div className="form-container">
           <form id="generate-words" onSubmit={this.handleSubmit.bind(this)}>
             <label for="word-count">Word count:</label>
-            <input id="word-count" type="number" />
+            <input
+              id="word-count"
+              type="number"
+              onChange={this.handleSubmit.bind(this)}
+            />
             <input type="submit" />
           </form>
-          <div className="color-options">
-            <span>Shirt color:</span>
-            {this.colorList.map((color) => {
-              return this.renderColorButton("shirt", color);
-            })}
-          </div>
-          <div className="text-color-options">
-            <span>Text color:</span>
-            {this.colorList.map((color) => {
-              return this.renderColorButton("text", color);
-            })}
-          </div>
-          <div className="align-text-options">
-            <span>Align Text:</span>
-            <select onChange={this.changeTextAlign.bind(this)}>
-              <option value="right">Right</option>
-              <option value="center">Center</option>
-              <option value="left">Left</option>
-            </select>
-          </div>
+
+          <span>Shirt color:</span>
+          {this.colorList.map((color) => {
+            return this.renderColorButton("shirt", color);
+          })}
+
+          <span>Text color:</span>
+          {this.colorList.map((color) => {
+            return this.renderColorButton("text", color);
+          })}
+
+          <span>Align Text:</span>
+          <select onChange={this.changeTextAlign.bind(this)}>
+            <option value="right">Right</option>
+            <option value="center">Center</option>
+            <option value="left">Left</option>
+          </select>
         </div>
-        <div className={`tshirt-container shirt-color--white ${shirtClasses}`}>
+        <div className={`tshirt-container ${shirtClasses}`}>
           <button className="add-btn" onClick={this.saveShirt.bind(this)}>
             +
           </button>
@@ -118,7 +121,7 @@ class Generator extends Component {
             <p>{this.state.text}</p>
           </div>
         </div>
-      </>
+      </main>
     );
   }
 }
