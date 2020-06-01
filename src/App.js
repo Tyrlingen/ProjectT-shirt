@@ -30,7 +30,7 @@ class App extends Component {
     return (
       <Router>
         <header>
-          <h1 class="logo">Chinese T-Shirt Generator</h1>
+          <h1 class="logo">T-Shirt Generator</h1>
           <div class="name">
             <p>Grupp 25</p>
             <p>Karl Hamnebo, Felicia Lindbäck, Sebastian Tyrling</p>

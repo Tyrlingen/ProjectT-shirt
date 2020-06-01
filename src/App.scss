@@ -1,6 +1,6 @@
-$black: #222;
-$red: rgb(220, 61, 61);
-$green: rgb(51, 179, 87);
+$black: #333;
+$red: rgb(230, 0, 0);
+$green: rgb(94, 199, 124);
 $blue: rgb(36, 130, 212);
 $yellow: rgb(255, 196, 0);
 
@@ -53,14 +53,12 @@ $yellow: rgb(255, 196, 0);
 }
 
 .tshirt-container {
-  &.card {
-    //STYLES FOR TINY SHERT
-  }
+  
   width: 100%;
   max-width: 800px;
   display: flex;
   position: relative;
-  background-color: #555;
+  background-color: #bbb;
 
   &::after {
     content: "";
@@ -72,6 +70,7 @@ $yellow: rgb(255, 196, 0);
     height: 100%;
     margin: 0;
     padding: 10%;
+    font-size: 24pt;
     box-sizing: border-box;
     z-index: 5;
     &::before {
@@ -170,7 +169,6 @@ $yellow: rgb(255, 196, 0);
   position: absolute;
   top: 50%;
   left: 50%;
-  background-color: #333;
   color: white;
   margin: 0;
   transform: translate(-50%, -50%);
@@ -218,17 +216,25 @@ $yellow: rgb(255, 196, 0);
 .storage-container {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
-}
 
+  .card {
+    width: 50%;
+  }
+}
+.card {
+  min-width: 50%;
+}
 .main {
   &--generator {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
   }
 }
 
 .form-container {
+  text-align: center;
   span {
     display: block;
   }
@@ -238,4 +244,60 @@ $yellow: rgb(255, 196, 0);
   input {
     display: block;
   }
+  margin-top: 15px;
+  padding: 10px;
+}
+
+@media screen and (max-width: 1350px) {
+  .tshirt-container {
+    p {
+      font-size: 14pt;
+    }
+
+  }
+  .storage-container {
+    flex-wrap: wrap;
+  }
+  .card {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .tshirt-container {
+    p {
+      font-size: 12pt;
+    }
+
+  }
+  .navbar a {
+    flex-basis: 100%;
+    border-style: solid;
+    border-width: 2px;
+  }
+
+  .name {
+    flex-basis: 100%;
+    margin: auto;
+  }
+
+  .main {
+    &--generator {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .storage-container {
+    flex-direction: column;
+
+    .card {
+      width: 100%;
+    }
+  }
+
+  
+  
 }

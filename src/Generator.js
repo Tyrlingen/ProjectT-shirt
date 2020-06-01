@@ -5,7 +5,6 @@ class Generator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      savedShirts: [],
       text: "Generate me!",
       textAlign: "center",
       shirtColor: "white",
@@ -26,9 +25,11 @@ class Generator extends Component {
       textColor: this.state.textColor,
       shirtFont: this.state.shirtFont,
     };
-    const newSavedShirts = [...this.state.savedShirts, shirt];
-    this.setState({ savedShirts: newSavedShirts });
+
     const myStorage = window.localStorage;
+    const shirts = myStorage.getItem("saved-shirts");
+
+    const newSavedShirts = [...JSON.parse(shirts), shirt];
     myStorage.setItem("saved-shirts", JSON.stringify(newSavedShirts));
   }
 
@@ -53,14 +54,15 @@ class Generator extends Component {
     event.preventDefault();
     const inputField = document.querySelector("#word-count");
     const number = inputField.value;
-    fetch(`https://random-word-api.herokuapp.com/word?number=${number}`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        const text = data.join(" ");
-        this.setState({ text: text });
-      });
+    inputField.value < 9 ? fetch(`https://random-word-api.herokuapp.com/word?number=${number}`)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      const text = data.join(" ");
+      this.setState({ text: text });
+    }) : alert('For aesthetic reasons, you can only generate 8 words! :3 xD xD :33 UwU')
+    
   }
 
   changeTextAlign(event) {
@@ -93,7 +95,6 @@ class Generator extends Component {
               type="number"
               onChange={this.handleSubmit.bind(this)}
             />
-            <input type="submit" />
           </form>
 
           <span>Shirt color:</span>

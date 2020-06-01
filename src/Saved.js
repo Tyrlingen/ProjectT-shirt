@@ -9,11 +9,16 @@ class Saved extends Component {
     };
   }
 
+  componentDidMount() {
+    this.getShirts();
+  }
+
   getShirts() {
     const myStorage = window.localStorage;
     const shirts = myStorage.getItem("saved-shirts");
     if (shirts && shirts.length) {
-      this.setState({ savedShirts: JSON.parse(shirts) });
+      let currentList = [...this.state.savedShirts, shirts]
+      this.setState({ savedShirts: JSON.parse(currentList) });
     }
   }
 
@@ -23,8 +28,6 @@ class Saved extends Component {
   }
   render() {
     return (
-      <>
-        <p>HEJ</p>
         <div className="storage-container">
           {this.state.savedShirts.map((shirt) => {
             let newClasses = this.props.getClasses(
@@ -41,7 +44,6 @@ class Saved extends Component {
             );
           })}
         </div>
-      </>
     );
   }
 }
