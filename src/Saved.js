@@ -18,7 +18,6 @@ class Saved extends Component {
   }
 
   componentDidMount() {
-    console.log("hello");
     this.getShirts();
   }
   render() {

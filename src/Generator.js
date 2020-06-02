@@ -26,9 +26,12 @@ class Generator extends Component {
       textColor: this.state.textColor,
       shirtFont: this.state.shirtFont,
     };
-    const newSavedShirts = [...this.state.savedShirts, shirt];
-    this.setState({ savedShirts: newSavedShirts });
+
     const myStorage = window.localStorage;
+    const shirts = myStorage.getItem("saved-shirts");
+
+    const newSavedShirts = [...JSON.parse(shirts), shirt];
+    this.setState({ savedShirts: newSavedShirts });
     myStorage.setItem("saved-shirts", JSON.stringify(newSavedShirts));
   }
 
