@@ -28,8 +28,9 @@ class Generator extends Component {
 
     const myStorage = window.localStorage;
     const shirts = myStorage.getItem("saved-shirts");
+    const savedShirts = shirts ? JSON.parse(shirts) : [];
 
-    const newSavedShirts = [...JSON.parse(shirts), shirt];
+    const newSavedShirts = [...savedShirts, shirt];
     myStorage.setItem("saved-shirts", JSON.stringify(newSavedShirts));
   }
 
@@ -54,15 +55,18 @@ class Generator extends Component {
     event.preventDefault();
     const inputField = document.querySelector("#word-count");
     const number = inputField.value;
-    inputField.value < 9 ? fetch(`https://random-word-api.herokuapp.com/word?number=${number}`)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      const text = data.join(" ");
-      this.setState({ text: text });
-    }) : alert('For aesthetic reasons, you can only generate 8 words! :3 xD xD :33 UwU')
-    
+    inputField.value < 9
+      ? fetch(`https://random-word-api.herokuapp.com/word?number=${number}`)
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            const text = data.join(" ");
+            this.setState({ text: text });
+          })
+      : alert(
+          "For aesthetic reasons, you can only generate 8 words! :3 xD xD :33 UwU"
+        );
   }
 
   changeTextAlign(event) {
