@@ -24,14 +24,14 @@ class Saved extends Component {
   render() {
     return (
       <div className="storage-container">
-        {this.state.savedShirts.map((shirt) => {
+        {this.state.savedShirts.map((shirt, i) => {
           let newClasses = this.props.getClasses(
             shirt.textAlign,
             shirt.shirtColor,
             shirt.textColor
           );
           return (
-            <div className={`tshirt-container card ${newClasses}`}>
+            <div className={`tshirt-container card ${newClasses}`} key={i}>
               <div className="tshirt">
                 <p>{shirt.text}</p>
               </div>
