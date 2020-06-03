@@ -53,7 +53,6 @@ $yellow: rgb(255, 196, 0);
 }
 
 .tshirt-container {
-  
   width: 100%;
   max-width: 800px;
   display: flex;
@@ -199,18 +198,48 @@ $yellow: rgb(255, 196, 0);
   }
 }
 
+.toast {
+  position: fixed;
+  padding: 10px;
+  background-color: #111;
+  border: 2px solid white;
+  color: white;
+  right: 0;
+  top: 10px;
+  transform: translateX(100%);
+  transition: transform 0.6s ease-in-out;
+
+  &_link {
+    color: white;
+    &:visited,
+    &:active {
+      color: white;
+    }
+  }
+
+  &--visible {
+    transform: translateX(-10px);
+  }
+}
+
 .add-btn {
   display: block;
-  font-size: 150%;
   text-align: center;
-  width: 10%;
-  height: 10%;
+  font-size: 18px;
+  padding: 15px;
   position: absolute;
-  bottom: 9%;
+  bottom: 5.5%;
   left: 50%;
-  padding: 2% 2%;
-  border-radius: 100%;
+
+  background-color: #017bee;
+  color: white;
+  border-radius: 10%;
   transform: translate(-50%);
+
+  &:active {
+    transform: translate(-50%) scale(0.9);
+    background-color: #0767b6;
+  }
 }
 
 .storage-container {
@@ -253,7 +282,6 @@ $yellow: rgb(255, 196, 0);
     p {
       font-size: 14pt;
     }
-
   }
   .storage-container {
     flex-wrap: wrap;
@@ -268,7 +296,6 @@ $yellow: rgb(255, 196, 0);
     p {
       font-size: 12pt;
     }
-
   }
   .navbar a {
     flex-basis: 100%;
@@ -297,7 +324,4 @@ $yellow: rgb(255, 196, 0);
       width: 100%;
     }
   }
-
-  
-  
 }
