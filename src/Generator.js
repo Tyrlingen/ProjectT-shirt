@@ -133,8 +133,8 @@ class Generator extends Component {
 
           <span>Align Text:</span>
           <select onChange={this.changeTextAlign.bind(this)}>
+          <option value="center">Center</option>
             <option value="right">Right</option>
-            <option value="center">Center</option>
             <option value="left">Left</option>
           </select>
         </div>
