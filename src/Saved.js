@@ -17,33 +17,28 @@ class Saved extends Component {
     const myStorage = window.localStorage;
     const shirts = myStorage.getItem("saved-shirts");
     if (shirts && shirts.length) {
-      let currentList = [...this.state.savedShirts, shirts]
+      let currentList = [...this.state.savedShirts, shirts];
       this.setState({ savedShirts: JSON.parse(currentList) });
     }
   }
-
-  componentDidMount() {
-    console.log("hello");
-    this.getShirts();
-  }
   render() {
     return (
-        <div className="storage-container">
-          {this.state.savedShirts.map((shirt) => {
-            let newClasses = this.props.getClasses(
-              shirt.textAlign,
-              shirt.shirtColor,
-              shirt.textColor
-            );
-            return (
-              <div className={`tshirt-container card ${newClasses}`}>
-                <div className="tshirt">
-                  <p>{shirt.text}</p>
-                </div>
+      <div className="storage-container">
+        {this.state.savedShirts.map((shirt) => {
+          let newClasses = this.props.getClasses(
+            shirt.textAlign,
+            shirt.shirtColor,
+            shirt.textColor
+          );
+          return (
+            <div className={`tshirt-container card ${newClasses}`}>
+              <div className="tshirt">
+                <p>{shirt.text}</p>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
+      </div>
     );
   }
 }

@@ -44,7 +44,7 @@ class Generator extends Component {
   }
 
   changeColorOf(thing, color) {
-    thing == "shirt"
+    thing === "shirt"
       ? this.setState({ shirtColor: color, shirtAdded: false })
       : this.setState({ textColor: color, shirtAdded: false });
   }
@@ -83,10 +83,11 @@ class Generator extends Component {
     this.setState({ textAlign: event.target.value, shirtAdded: false });
   }
 
-  renderColorButton(thing, color) {
+  renderColorButton(thing, color, i) {
     return (
       <button
         className={`color-btn color-btn--${color}`}
+        key={i}
         onClick={() => this.changeColorOf(thing, color)}
       ></button>
     );
@@ -113,7 +114,7 @@ class Generator extends Component {
         </div>
         <div className="form-container">
           <form id="generate-words" onSubmit={this.handleSubmit.bind(this)}>
-            <label for="word-count">Word count:</label>
+            <label htmlFor="word-count">Word count:</label>
             <input
               id="word-count"
               type="number"
@@ -122,18 +123,18 @@ class Generator extends Component {
           </form>
 
           <span>Shirt color:</span>
-          {this.colorList.map((color) => {
-            return this.renderColorButton("shirt", color);
+          {this.colorList.map((color, i) => {
+            return this.renderColorButton("shirt", color, i);
           })}
 
           <span>Text color:</span>
-          {this.colorList.map((color) => {
-            return this.renderColorButton("text", color);
+          {this.colorList.map((color, i) => {
+            return this.renderColorButton("text", color, i);
           })}
 
           <span>Align Text:</span>
           <select onChange={this.changeTextAlign.bind(this)}>
-          <option value="center">Center</option>
+            <option value="center">Center</option>
             <option value="right">Right</option>
             <option value="left">Left</option>
           </select>

@@ -10,10 +10,6 @@ import {
 } from "react-router-dom";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   getClasses(textAlign, shirtColor, textColor) {
     var startTextAlign = "text-align--";
     var startTextColor = "text-color--";
@@ -30,13 +26,13 @@ class App extends Component {
     return (
       <Router>
         <header>
-          <h1 class="logo">T-Shirt Generator</h1>
-          <div class="name">
+          <h1 className="logo">T-Shirt Generator</h1>
+          <div className="name">
             <p>Grupp 25</p>
             <p>Karl Hamnebo, Felicia Lindbäck, Sebastian Tyrling</p>
           </div>
         </header>
-        <nav class="navbar">
+        <nav className="navbar">
           <NavLink to="/">Generate!</NavLink>
           <NavLink to="/saved">Saved Shirts</NavLink>
         </nav>
