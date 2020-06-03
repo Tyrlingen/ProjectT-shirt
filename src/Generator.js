@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.scss";
+import { NavLink as Link } from "react-router-dom";
 
 class Generator extends Component {
   constructor(props) {
@@ -10,6 +11,8 @@ class Generator extends Component {
       shirtColor: "white",
       textColor: "black",
       shirtFont: "",
+      shirtAdded: false,
+      showToast: false,
     };
 
     this.colorList = ["white", "black", "green", "blue", "red", "yellow"];
@@ -18,6 +21,9 @@ class Generator extends Component {
     this.getClasses();
   }
   saveShirt() {
+    if (this.state.shirtAdded) {
+      return;
+    }
     const shirt = {
       text: this.state.text,
       textAlign: this.state.textAlign,
@@ -25,6 +31,9 @@ class Generator extends Component {
       textColor: this.state.textColor,
       shirtFont: this.state.shirtFont,
     };
+
+    this.setState({ shirtAdded: true, showToast: true });
+    setTimeout(() => this.setState({ showToast: false }), 3000);
 
     const myStorage = window.localStorage;
     const shirts = myStorage.getItem("saved-shirts");
@@ -36,8 +45,8 @@ class Generator extends Component {
 
   changeColorOf(thing, color) {
     thing == "shirt"
-      ? this.setState({ shirtColor: color })
-      : this.setState({ textColor: color });
+      ? this.setState({ shirtColor: color, shirtAdded: false })
+      : this.setState({ textColor: color, shirtAdded: false });
   }
 
   getClasses(textAlign, shirtColor, textColor) {
@@ -62,7 +71,7 @@ class Generator extends Component {
           })
           .then((data) => {
             const text = data.join(" ");
-            this.setState({ text: text });
+            this.setState({ text: text, shirtAdded: false });
           })
       : alert(
           "For aesthetic reasons, you can only generate 8 words! :3 xD xD :33 UwU"
@@ -71,7 +80,7 @@ class Generator extends Component {
 
   changeTextAlign(event) {
     console.log(event.target.value);
-    this.setState({ textAlign: event.target.value });
+    this.setState({ textAlign: event.target.value, shirtAdded: false });
   }
 
   renderColorButton(thing, color) {
@@ -89,8 +98,19 @@ class Generator extends Component {
       this.state.shirtColor,
       this.state.textColor
     );
+
     return (
       <main className="main--generator">
+        <div
+          className={`toast${this.state.showToast ? " toast--visible" : ""}`}
+        >
+          <p>
+            The shirt was added to your{" "}
+            <Link className="toast_link" to="/saved">
+              library!
+            </Link>
+          </p>
+        </div>
         <div className="form-container">
           <form id="generate-words" onSubmit={this.handleSubmit.bind(this)}>
             <label for="word-count">Word count:</label>
@@ -120,7 +140,7 @@ class Generator extends Component {
         </div>
         <div className={`tshirt-container ${shirtClasses}`}>
           <button className="add-btn" onClick={this.saveShirt.bind(this)}>
-            +
+            Save shirt
           </button>
           <div className="tshirt">
             <p>{this.state.text}</p>
