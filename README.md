@@ -1,6 +1,6 @@
 # Project Description
 
-Welcome to Project T-shirt! This is a project made by Group 25 (2020) for the course Multi-platform programming at Malmö University, with the goal to become better at programming dynamic webpages. The application lets you generate a T-shirt by getting a user-decided amount of random words from https://random-word-api.herokuapp.com/home, and then deciding the style of the T-shirt (Shirt color, text color, text align). The T-shirt can then be saved to a library via the localstorage, so that you can view your glorious creations!
+Welcome to Project T-shirt! This is a project made by Group 25 (2020) for the course Multi-platform programming at Malmö University, with the goal to become better at programming dynamic webpages. The application lets you generate a T-shirt by getting a user-decided amount of random words from https://random-word-api.herokuapp.com/home, and then deciding the style of the T-shirt (Shirt color, text color, text align). The T-shirt can then be saved to a library via the localstorage, so that you can view your glorious creations! (Some awesome text i needed for text purpose)
 
 ## Why React?
 
